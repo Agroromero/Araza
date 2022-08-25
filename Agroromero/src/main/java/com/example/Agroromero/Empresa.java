@@ -50,6 +50,4 @@ public class Empresa {
     public void setNit(int nit) {
         this.nit = nit;
     }
-
-
 }
