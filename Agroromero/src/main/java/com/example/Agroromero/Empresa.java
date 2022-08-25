@@ -15,7 +15,7 @@ public class Empresa {
         this.telefono = telefono;
         this.nit = nit;
     }
-
+         
     //getter y setter
 
 
