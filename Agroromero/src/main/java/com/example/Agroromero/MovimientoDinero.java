@@ -25,4 +25,12 @@ public class MovimientoDinero {
     public void setConceptoMovimiento(String conceptoMovimiento) {
         this.conceptoMovimiento = conceptoMovimiento;
     }
+
+    public double montos(){
+        return -1;
+    }
+
+    public String usuarioEncargado(){
+        return "-1";
+    }
 }
