@@ -1,4 +1,4 @@
-package com.example.Agroromero;
+package com.example.Agroromero.Entidades;
 
 public class MovimientoDinero {
 
