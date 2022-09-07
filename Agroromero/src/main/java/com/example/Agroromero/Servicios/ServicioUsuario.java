@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServicioUsuario {
-
+/*
     ServicioMovimientoDinero smd1 = new ServicioMovimientoDinero();
     Empleado empleado1;
 
@@ -14,5 +14,5 @@ public class ServicioUsuario {
                 "Administrador", null);
     }
 
-
+*/
 }

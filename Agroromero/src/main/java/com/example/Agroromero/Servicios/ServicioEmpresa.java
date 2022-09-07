@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class ServicioEmpresa {
 
-    ServicioUsuario se1 = new ServicioUsuario();
+    //ServicioUsuario se1 = new ServicioUsuario();
 
     private RepositorioEmpresa repositorioE;
 
