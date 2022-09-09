@@ -1,12 +1,11 @@
 package com.example.Agroromero.Servicios;
 import com.example.Agroromero.Entidades.Empleado;
-import com.example.Agroromero.Entidades.Empresa;
-import com.example.Agroromero.Repositorios.RepositorioEmpresa;
 import com.example.Agroromero.Repositorios.RepositorioUsuario;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
+
 @Service
 public class ServicioUsuario {
     private RepositorioUsuario repositorioU;
