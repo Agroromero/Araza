@@ -17,7 +17,10 @@
 		<java.version>18</java.version>
 	</properties>
 	<dependencies>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 69f767f191b6f8224e504e3c8cd61aca7ebf2f0a
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -56,9 +59,12 @@
 			<version>42.4.0</version>
 		</dependency>
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 69f767f191b6f8224e504e3c8cd61aca7ebf2f0a
 	</dependencies>
 
 	<build>
