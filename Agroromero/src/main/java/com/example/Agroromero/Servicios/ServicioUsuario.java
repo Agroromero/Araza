@@ -8,27 +8,30 @@ import java.util.List;
 
 @Service
 public class ServicioUsuario {
-    private RepositorioUsuario repositorioU;
+    private RepositorioUsuario repositorioUsuario;
     public ServicioUsuario(RepositorioUsuario repositorioU){
-        this.repositorioU = repositorioU;
+
+        this.repositorioUsuario = repositorioU;
     }
     public List<Empleado> getInformacion(){
-        return this.repositorioU.findAll();
+
+        return this.repositorioUsuario.findAll();
     }
     public Empleado crearUsuario(Empleado nuevoUsuario){
-        return this.repositorioU.save(nuevoUsuario);
+
+        return this.repositorioUsuario.save(nuevoUsuario);
     }
     public Empleado actualizarEmpleado(@PathVariable Long id, @RequestBody Empleado e){
-        Empleado empleadoActual = this.repositorioU.findById(id).orElseThrow();
+        Empleado empleadoActual = this.repositorioUsuario.findById(id).orElseThrow();
         empleadoActual.setCorreo((e.getCorreo()));
         empleadoActual.setNombre(e.getNombre());
         empleadoActual.setRolEmpleado(e.getRolEmpleado());
         empleadoActual.setEmpresaEmpleadoPertenece(e.getEmpresaEmpleadoPertenece());
-        return this.repositorioU.save(empleadoActual);
+        return this.repositorioUsuario.save(empleadoActual);
     }
     public Empleado eliminarEmpleado(Long id){
-        Empleado empleadoActual = this.repositorioU.findById(id).orElseThrow();
-        this.repositorioU.deleteById(id);
+        Empleado empleadoActual = this.repositorioUsuario.findById(id).orElseThrow();
+        this.repositorioUsuario.deleteById(id);
         return empleadoActual;
     }
 }
