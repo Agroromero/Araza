@@ -2,8 +2,7 @@ package com.example.Agroromero.Controladores;
 
 import com.example.Agroromero.Entidades.Empresa;
 import com.example.Agroromero.Servicios.ServicioEmpresa;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +16,24 @@ public class ControladorEmpresa {
         this.se1 = se1;
     }
 
-    @GetMapping("/informacion")
+    @GetMapping("/enterprise")
     public List<Empresa> informacion(){
         return this.se1.getInformacion();
     }
+
+    @PostMapping("/enterprise")
+    public Empresa crearEmpresa(@RequestBody Empresa e){
+        return this.se1.crearEmpresa(e);
+    }
+
+    @PutMapping("/enterprise/{id}")
+    public Empresa actualizarEmpresa(@PathVariable Long id, @RequestBody Empresa e){
+        return this.se1.actualizarEmpresa(id, e);
+    }
+
+    @DeleteMapping("/enterprise/{id}")
+    public Empresa eliminarEmpresa(@PathVariable(value = "id") Long id){
+        return this.se1.eliminarEmpresa(id);
+    }
+
 }
