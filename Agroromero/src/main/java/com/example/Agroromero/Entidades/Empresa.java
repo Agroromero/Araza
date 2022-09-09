@@ -1,6 +1,5 @@
 package com.example.Agroromero.Entidades;
 
-<<<<<<< HEAD
 import javax.persistence.*;
 
 @Entity
@@ -22,34 +21,18 @@ public class Empresa {
     @Transient
     Empleado empleado;
 
+    public Empresa(){
+
+    }
+
     public Empresa(String nombre, String direccion, int telefono, String nit, Empleado empleado) {
-=======
-public class Empresa {
-    private String nombre;
-    private String direccion;
-    private int telefono;
-    private int nit;
-
-    //Constructor
-
-
-    public Empresa(String nombre, String direccion, int telefono, int nit) {
->>>>>>> 69f767f191b6f8224e504e3c8cd61aca7ebf2f0a
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.nit = nit;
-<<<<<<< HEAD
         this.empleado = empleado;
     }
 
-=======
-    }
-
-    //getter y setter
-
-
->>>>>>> 69f767f191b6f8224e504e3c8cd61aca7ebf2f0a
     public String getNombre() {
         return nombre;
     }
@@ -74,7 +57,6 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-<<<<<<< HEAD
     public String getNit() {
         return nit;
     }
@@ -90,24 +72,4 @@ public class Empresa {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
-
-    @Override
-    public String toString() {
-        return "Empresa{" +
-                "nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono=" + telefono +
-                ", nit='" + nit + '\'' +
-                ", empleado=" + this.empleado +
-                '}';
-    }
-=======
-    public int getNit() {
-        return nit;
-    }
-
-    public void setNit(int nit) {
-        this.nit = nit;
-    }
->>>>>>> 69f767f191b6f8224e504e3c8cd61aca7ebf2f0a
 }
