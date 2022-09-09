@@ -4,4 +4,8 @@
   <component name="ProjectType">
     <option name="id" value="jpab" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="18" project-jdk-type="JavaSDK" />
+>>>>>>> 69f767f191b6f8224e504e3c8cd61aca7ebf2f0a
 </project>
