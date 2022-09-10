@@ -21,16 +21,16 @@ public class Empresa {
     @Transient
     Empleado empleado;
 
-    public Empresa(){
-
-    }
-
     public Empresa(String nombre, String direccion, int telefono, String nit, Empleado empleado) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.nit = nit;
         this.empleado = empleado;
+    }
+
+    public Empresa(){
+
     }
 
     public String getNombre() {
@@ -71,5 +71,16 @@ public class Empresa {
 
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono=" + telefono +
+                ", nit='" + nit + '\'' +
+                ", empleado=" + this.empleado +
+                '}';
     }
 }

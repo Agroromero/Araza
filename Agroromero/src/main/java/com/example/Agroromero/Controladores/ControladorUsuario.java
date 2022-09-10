@@ -1,47 +1,40 @@
 package com.example.Agroromero.Controladores;
+
 import com.example.Agroromero.Entidades.Empleado;
 import com.example.Agroromero.Servicios.ServicioUsuario;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
 @RestController
 public class ControladorUsuario {
 
-    ServicioUsuario serviciosUsu;
+    ServicioUsuario su1;
 
-    //Constructor
 
-    public ControladorUsuario(ServicioUsuario serviciosUsu){
-        this.serviciosUsu = serviciosUsu;
-
+    public ControladorUsuario(ServicioUsuario su1){
+        this.su1 = su1;
     }
-    //Get
+
     @GetMapping("/user")
-    public List<Empleado> user(){
-
-        return this.serviciosUsu.getInformacion();
+    public List<Empleado> informacion(){
+        return this.su1.getInformacion();
     }
 
-    //Post
     @PostMapping("/user")
-    public Empleado crearEmpleado(@RequestBody Empleado nuevoUsuario){
-        return this.serviciosUsu.crearUsuario(nuevoUsuario);
+    public Empleado crearEmpleado(@RequestBody Empleado e){
+        return this.su1.crearUsuario(e);
     }
 
-    //editar un registro
     @PutMapping("/user/{id}")
-    public Empleado actualizarPaciente(@PathVariable Long id,@RequestBody Empleado actEmpleado){
-        return this.serviciosUsu.actualizarEmpleado(id, actEmpleado);
-
+    public Empleado actualizarEmpresa(@PathVariable Long id, @RequestBody Empleado e){
+        return this.su1.actualizarEmpleado(id, e);
     }
 
-    //borrar un registro
-    @DeleteMapping("/eliminar/{id}")
-    public Empleado eliminarEmpleado (@PathVariable(value = "id") Long id){
-
-        return this.serviciosUsu.eliminarEmpleado(id);
+    @DeleteMapping("/user/{id}")
+    public Empleado eliminarEmpresa(@PathVariable(value = "id") Long id){
+        return this.su1.eliminarEmpleado(id);
     }
 
 }
-

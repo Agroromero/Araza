@@ -10,7 +10,6 @@ public class AgroromeroApplication {
 		SpringApplication.run(AgroromeroApplication.class, args);
 
 		System.out.println("\n\n\t\t   Servidor online");
-
 	}
 
 }
