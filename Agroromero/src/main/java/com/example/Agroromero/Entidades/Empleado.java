@@ -21,7 +21,7 @@ public class Empleado {
     @Transient
     MovimientoDinero movimientodinero;
 
-    public Empleado(){
+    public  Empleado(){
 
     }
 
@@ -72,5 +72,15 @@ public class Empleado {
     public void setMovimientodinero(MovimientoDinero movimientodinero) {
         this.movimientodinero = movimientodinero;
     }
-}
 
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", empresaEmpleadoPertenece='" + empresaEmpleadoPertenece + '\'' +
+                ", rolEmpleado='" + rolEmpleado + '\'' +
+                ", movimientodinero=" + this.movimientodinero +
+                '}';
+    }
+}
