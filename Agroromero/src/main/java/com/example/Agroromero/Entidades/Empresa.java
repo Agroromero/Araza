@@ -1,26 +1,37 @@
 package com.example.Agroromero.Entidades;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "empresa")
 public class Empresa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long nit;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "direccion")
     private String direccion;
     @Column(name = "telefono")
     private int telefono;
-    @Column(name = "nit")
-    private String nit;
+/*
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "documentoIdentidad")
+    private  Empleado empleado;
+*/
+    @OneToMany(mappedBy = "empresa")
+    private Set<Empleado> empleados;
 
-    @Transient
-    Empleado empleado;
+    public Set<Empleado> getEmpleados() {
+        return empleados;
+    }
 
+    public void setEmpleados(Set<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    /*
     public Empresa(String nombre, String direccion, int telefono, String nit, Empleado empleado) {
         this.nombre = nombre;
         this.direccion = direccion;
@@ -28,6 +39,8 @@ public class Empresa {
         this.nit = nit;
         this.empleado = empleado;
     }
+
+ */
 
     public Empresa(){
 
@@ -57,14 +70,14 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-    public String getNit() {
+    public Long getNit() {
         return nit;
     }
 
-    public void setNit(String nit) {
+    public void setNit(Long nit) {
         this.nit = nit;
     }
-
+/*
     public Empleado getEmpleado() {
         return empleado;
     }
@@ -72,15 +85,6 @@ public class Empresa {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
+*/
 
-    @Override
-    public String toString() {
-        return "Empresa{" +
-                "nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono=" + telefono +
-                ", nit='" + nit + '\'' +
-                ", empleado=" + this.empleado +
-                '}';
-    }
 }

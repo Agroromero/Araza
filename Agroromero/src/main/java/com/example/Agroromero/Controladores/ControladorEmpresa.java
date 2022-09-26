@@ -21,6 +21,10 @@ public class ControladorEmpresa {
         return this.se1.getInformacion();
     }
 
+
+
+
+
     @PostMapping("/enterprise")
     public Empresa crearEmpresa(@RequestBody Empresa e){
         return this.se1.crearEmpresa(e);
