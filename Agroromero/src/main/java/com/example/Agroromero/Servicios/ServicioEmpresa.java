@@ -34,7 +34,7 @@ public class ServicioEmpresa {
         empresaActual.setNombre(e.getNombre());
         empresaActual.setDireccion(e.getDireccion());
         empresaActual.setTelefono(e.getTelefono());
-        empresaActual.setNit(e.getNit());
+        //empresaActual.setNit(e.getNit());
         return this.repositorioE.save(empresaActual);
     }
 

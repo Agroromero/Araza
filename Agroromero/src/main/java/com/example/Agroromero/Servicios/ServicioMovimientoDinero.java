@@ -24,6 +24,9 @@ public class ServicioMovimientoDinero {
         return this.repositorioMD.findAll();
     }
 
+    public MovimientoDinero getMovimiento(Long id){
+        return this.repositorioMD.findById(id).orElseThrow();
+    }
     public MovimientoDinero crearMovimientoDinero(MovimientoDinero nuevoMovimientoDinero){
         return this.repositorioMD.save(nuevoMovimientoDinero);
     }

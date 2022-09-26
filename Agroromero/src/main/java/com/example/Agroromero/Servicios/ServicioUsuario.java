@@ -24,17 +24,21 @@ public class ServicioUsuario {
         return this.repositorioU.findAll();
     }
 
+    public Empleado getUsuario(Long id){
+        return this.repositorioU.findById(id).orElseThrow();
+    }
+
     public Empleado crearUsuario(Empleado nuevoUsuario){
         return this.repositorioU.save(nuevoUsuario);
     }
 
-    public Empleado actualizarEmpleado(@PathVariable Long id, @RequestBody Empleado e){
+    //public Empleado actualizarEmpleado(@PathVariable Long id, @RequestBody Empleado e){
+    public Empleado actualizarEmpleado(@PathVariable Long id, Empleado e){
         Empleado empleadoActual = this.repositorioU.findById(id).orElseThrow();
         empleadoActual.setCorreo((e.getCorreo()));
         empleadoActual.setNombre(e.getNombre());
         empleadoActual.setRolEmpleado(e.getRolEmpleado());
-        empleadoActual.setEmpresaEmpleadoPertenece(e.getEmpresaEmpleadoPertenece());
-
+        //empleadoActual.setDocumentoIdentidad(e.getDocumentoIdentidad());
         return this.repositorioU.save(empleadoActual);
     }
 
