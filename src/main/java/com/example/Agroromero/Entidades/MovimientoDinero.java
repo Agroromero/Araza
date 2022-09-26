@@ -64,22 +64,4 @@ public class MovimientoDinero {
         this.conceptoMovimiento = conceptoMovimiento;
     }
 
-    public double getSumaMovimientos(){
-        ArrayList<Integer> documentos = new ArrayList<Integer>();
-        documentos.add(this.empleadores.getDocumentoIdentidad().intValue());
-        System.out.println(documentos.size());
-        for(int i = 0; i < documentos.size(); i++){
-
-        }
-        //for(int i = 0; empleadores.getDocumentoIdentidad())
-        //List<array> documentos = empleadores.getDocumentoIdentidad();
-        return 10;
-    }
-
-    public int getCantidadMovimientos(){
-        ArrayList<Integer> cantidad = new ArrayList<Integer>();
-        cantidad.add(this.empleadores.getDocumentoIdentidad().intValue());
-        System.out.println(cantidad.size());
-        return cantidad.size();
-    }
 }
