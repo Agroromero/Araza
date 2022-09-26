@@ -1,5 +1,7 @@
 package com.example.Agroromero;
 
+import com.example.Agroromero.Entidades.Empleado;
+import com.example.Agroromero.Entidades.MovimientoDinero;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +12,7 @@ public class AgroromeroApplication {
 		SpringApplication.run(AgroromeroApplication.class, args);
 
 		System.out.println("\n\n\t\t   Servidor online");
+
 	}
 
 }

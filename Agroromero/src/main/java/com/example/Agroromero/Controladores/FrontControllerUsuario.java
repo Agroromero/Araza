@@ -1,11 +1,13 @@
 package com.example.Agroromero.Controladores;
 
+import com.example.Agroromero.Entidades.Autenticacion;
 import com.example.Agroromero.Entidades.Empleado;
-import com.example.Agroromero.Entidades.Empresa;
 import com.example.Agroromero.Entidades.MovimientoDinero;
-import com.example.Agroromero.Servicios.ServicioEmpresa;
+import com.example.Agroromero.Servicios.ServicioAutenticacion;
 import com.example.Agroromero.Servicios.ServicioMovimientoDinero;
 import com.example.Agroromero.Servicios.ServicioUsuario;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,19 +16,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
-public class FrontController {
+public class FrontControllerUsuario {
 
     ServicioUsuario su1;
     ServicioMovimientoDinero smd1;
+    ServicioAutenticacion sauth;
 
-    public FrontController(ServicioUsuario su1, ServicioMovimientoDinero smd1){
+    public FrontControllerUsuario(ServicioUsuario su1, ServicioMovimientoDinero smd1,
+                                  ServicioAutenticacion sauth){
         this.su1 = su1;
         this.smd1 = smd1;
+        this.sauth = sauth;
     }
 
 
     @GetMapping("/")
-    public String index(){
+    public String index(Model model, @AuthenticationPrincipal OidcUser principal){
+        if(principal != null){
+            System.out.println(principal.getClaims());
+            Autenticacion usuario = this.sauth.getOrCreateAuth(principal.getClaims());
+            model.addAttribute("auth", usuario);
+        }
         return "index";
     }
 
