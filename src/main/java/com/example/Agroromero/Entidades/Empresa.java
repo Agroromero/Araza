@@ -5,8 +5,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "empresa")
-public class Empresa {
-
+    public class Empresa {
     @Id
     private Long nit;
     @Column(name = "nombre")
@@ -14,36 +13,23 @@ public class Empresa {
     @Column(name = "direccion")
     private String direccion;
     @Column(name = "telefono")
-    private int telefono;
-/*
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "documentoIdentidad")
-    private  Empleado empleado;
-*/
-    @OneToMany(mappedBy = "empresa")
-    private Set<Empleado> empleados;
+    private Long telefono;
 
-    public Set<Empleado> getEmpleados() {
-        return empleados;
-    }
 
-    public void setEmpleados(Set<Empleado> empleados) {
-        this.empleados = empleados;
-    }
+   @OneToMany(mappedBy = "empresa")
+   private Set<Empleado> empleado;
 
-    /*
-    public Empresa(String nombre, String direccion, int telefono, String nit, Empleado empleado) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.nit = nit;
-        this.empleado = empleado;
-    }
-
- */
 
     public Empresa(){
 
+    }
+
+    public Long getNit() {
+        return nit;
+    }
+
+    public void setNit(Long nit) {
+        this.nit = nit;
     }
 
     public String getNombre() {
@@ -62,29 +48,19 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
-    public Long getNit() {
-        return nit;
-    }
-
-    public void setNit(Long nit) {
-        this.nit = nit;
-    }
-/*
-    public Empleado getEmpleado() {
+    public Set<Empleado> getEmpleado() {
         return empleado;
     }
 
-    public void setEmpleado(Empleado empleado) {
+    public void setEmpleado(Set<Empleado> empleado) {
         this.empleado = empleado;
     }
-*/
-
 }

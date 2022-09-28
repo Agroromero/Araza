@@ -1,10 +1,13 @@
-package com.example.Agroromero.Controladores;
+        package com.example.Agroromero.Controladores;
 
-import com.example.Agroromero.Entidades.Empresa;
-import com.example.Agroromero.Servicios.ServicioEmpresa;
-import org.springframework.web.bind.annotation.*;
+        import com.example.Agroromero.Entidades.Empleado;
+        import com.example.Agroromero.Entidades.Empresa;
+        import com.example.Agroromero.Servicios.ServicioEmpresa;
+        import org.springframework.ui.Model;
+        import org.springframework.web.bind.annotation.*;
+        import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
+        import java.util.List;
 
 @RestController
 public class ControladorEmpresa {
@@ -15,29 +18,49 @@ public class ControladorEmpresa {
     public ControladorEmpresa(ServicioEmpresa se1){
         this.se1 = se1;
     }
-
+/*
     @GetMapping("/enterprise")
     public List<Empresa> informacion(){
         return this.se1.getInformacion();
     }
 
 
-
-
-
+ */
     @PostMapping("/enterprise")
     public Empresa crearEmpresa(@RequestBody Empresa e){
         return this.se1.crearEmpresa(e);
     }
 
-    @PutMapping("/enterprise/{id}")
-    public Empresa actualizarEmpresa(@PathVariable Long id, @RequestBody Empresa e){
-        return this.se1.actualizarEmpresa(id, e);
+    @PostMapping("/empresas")
+    public RedirectView crearEmpresa(@ModelAttribute Empresa nuevaEmpresa, Model model) {
+        model.addAttribute(nuevaEmpresa);
+        this.se1.crearEmpresa(nuevaEmpresa);
+        return new RedirectView("/empresas");
     }
 
-    @DeleteMapping("/enterprise/{id}")
-    public Empresa eliminarEmpresa(@PathVariable(value = "id") Long id){
-        return this.se1.eliminarEmpresa(id);
+    @PutMapping("/empresas/{nit}")
+    public RedirectView actualizarEmpresa(@PathVariable Long nit, Empresa actEmprresa){
+        this.se1.actualizarEmpresa(nit, actEmprresa);
+        return new RedirectView("/empresas");
+    }
+/*
+    @PutMapping("/empleados/{documentoIdentidad}")
+    public RedirectView actualizarUsuario(@PathVariable Long documentoIdentidad, Empleado actEmpleado) {
+        this.serviciosUsu.actualizarUsuario(documentoIdentidad, actEmpleado);
+        return new RedirectView("/empleados");
+    }
+
+ */
+
+
+
+
+
+
+    @DeleteMapping("/empresas/{nit}")
+    public RedirectView eliminarEmpresa(@PathVariable(value = "nit") Long nit){
+        this.se1.eliminarEmpresa(nit);
+        return new RedirectView("/empresas");
     }
 
 }

@@ -1,73 +1,82 @@
 package com.example.Agroromero.Controladores;
-
 import com.example.Agroromero.Entidades.Empleado;
 import com.example.Agroromero.Servicios.ServicioUsuario;
-import org.springframework.boot.Banner;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
 
 import java.util.List;
 
 @RestController
 public class ControladorUsuario {
 
-    ServicioUsuario su1;
+    ServicioUsuario serviciosUsu;
 
+    //Constructor
 
-    public ControladorUsuario(ServicioUsuario su1){
-        this.su1 = su1;
+    public ControladorUsuario(ServicioUsuario serviciosUsu){
+        this.serviciosUsu = serviciosUsu;
+
     }
-/*
+    //Get
+    /*
     @GetMapping("/user")
-    public List<Empleado> informacion(){
-        return this.su1.getInformacion();
+    public List<Empleado> user(){
+        return this.serviciosUsu.getlistaEmpleado();
     }
 
- */
 
-/*
-    @PostMapping("/user")
-//    public Empleado crearEmpleado(@RequestBody Empleado e, Model model){
-    public Empleado crearEmpleado(@ModelAttribute Empleado e, Model model){
-        model.addAttribute(e);
-        return this.su1.crearUsuario(e);
+     */
+    //Post
+    /*
+    @PostMapping("/empleados")
+    public Empleado crearEmpleado(@ModelAttribute Empleado nuevoUsuario, Model model){
+        model.addAttribute(nuevoUsuario);
+        return this.serviciosUsu.crearUsuario(nuevoUsuario);
+    }*/
+    @PostMapping("/empleados")
+    public RedirectView crearEmpleado(@ModelAttribute Empleado nuevoUsuario, Model model){
+        model.addAttribute(nuevoUsuario);
+        this.serviciosUsu.crearUsuario(nuevoUsuario);
+        return new RedirectView("/empleados");
     }
-*/
-/*
+
+
+
+
+
+    //editar un registro
+
+    @PutMapping("/empleados/{documentoIdentidad}")
+    public RedirectView actualizarUsuario(@PathVariable Long documentoIdentidad, Empleado actEmpleado){
+       this.serviciosUsu.actualizarUsuario(documentoIdentidad, actEmpleado);
+        return new RedirectView("/empleados");
+
+    }
+
+    /*
+    @PutMapping("/empleados/{documentoIdentidad}")
+    public Empleado actualizarUsuario(@PathVariable Long id, @RequestBody Empleado actEmpleado){
+        return this.serviciosUsu.actualizarUsuario(id, actEmpleado);
+
+    }
+
+     */
+
+    //borrar un registro
+    @DeleteMapping("/empleados/{documentoIdentidad}")
+    public RedirectView eliminarUsuario(@PathVariable(value = "documentoIdentidad") Long documentoIdentidad){
+        this.serviciosUsu.eliminarUsuario(documentoIdentidad);
+        return new RedirectView("/empleados");
+    }
     @GetMapping("/user/{id}")
-    public Empleado usuario(@PathVariable Long id){
-        return this.su1.getUsuario(id);
-    }
-*/
-    @PostMapping("/user")
-    public RedirectView crearEmpleado(@ModelAttribute Empleado e, Model model){
-        model.addAttribute(e);
-        this.su1.crearUsuario(e);
-        return new RedirectView("/user");
+    public Empleado usuario(@PathVariable Long documentoIdentidad){
+        return this.serviciosUsu.getUsuario(documentoIdentidad);
     }
     /*
-        @PutMapping("/user/{id}")
-        public Empleado actualizarEmpresa(@PathVariable Long id, @RequestBody Empleado e){
-            return this.su1.actualizarEmpleado(id, e);
-        }
- */
-    @PutMapping("/user/{id}")
-    public RedirectView actualizarDatos(@PathVariable Long id, Empleado e){
-        this.su1.actualizarEmpleado(id, e);
-        return new RedirectView("/user");
+    @DeleteMapping("/eliminar/{documentoIdentidad}")
+    public Empleado eliminarUsuario(@PathVariable(value = "documentoIdentidad") Long id){
+        return this.serviciosUsu.eliminarUsuario(id);
     }
-/*
-    @DeleteMapping("/user/{id}")
-    public Empleado eliminarEmpresa(@PathVariable(value = "id") Long id){
-        return this.su1.eliminarEmpleado(id);
-    }
-*/
-    @DeleteMapping("/user/{id}")
-    public RedirectView eliminarEmpleado(@PathVariable(value = "id") Long id){
-        this.su1.eliminarEmpleado(id);
-        return new RedirectView("/user");
-    }
-
+     */
 }

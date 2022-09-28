@@ -1,9 +1,9 @@
 package com.example.Agroromero.Servicios;
 
-import com.example.Agroromero.Entidades.Empleado;
+//import com.example.Agroromero.Entidades.Empleado;
 import com.example.Agroromero.Entidades.MovimientoDinero;
 import com.example.Agroromero.Repositorios.RepositorioMovimientoDinero;
-import com.example.Agroromero.Repositorios.RepositorioUsuario;
+//import com.example.Agroromero.Repositorios.RepositorioUsuario;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,9 +24,6 @@ public class ServicioMovimientoDinero {
         return this.repositorioMD.findAll();
     }
 
-    public MovimientoDinero getMovimiento(Long id){
-        return this.repositorioMD.findById(id).orElseThrow();
-    }
     public MovimientoDinero crearMovimientoDinero(MovimientoDinero nuevoMovimientoDinero){
         return this.repositorioMD.save(nuevoMovimientoDinero);
     }
@@ -44,4 +41,31 @@ public class ServicioMovimientoDinero {
         return movimientoDineroActual;
     }
 
+
+    //metodo
+
+    public double getbalance(Long id){
+        List<MovimientoDinero> movimientos = this.repositorioMD.findAll();
+        System.out.println(movimientos.size());
+        System.out.println(movimientos.listIterator());
+        double balance = 0;
+        for (int i = 0; i < movimientos.size(); i++){
+            if(movimientos.get(i).getEmpleado().getDocumentoIdentidad() == id.intValue()){
+                System.out.println(movimientos.get(i).getMontoMovimiento());
+                balance = balance + movimientos.get(i).getMontoMovimiento();
+            }
+        }
+        System.out.println(balance);
+        return balance;
+
+    }
 }
+
+
+
+
+
+
+
+
+

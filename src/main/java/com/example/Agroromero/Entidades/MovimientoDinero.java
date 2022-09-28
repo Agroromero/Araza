@@ -1,51 +1,48 @@
 package com.example.Agroromero.Entidades;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "movimientodinero")
 public class MovimientoDinero {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long registroMoviento;
     @Column(name = "montomovimiento")
     private double montoMovimiento;
     @Column(name = "conceptomovimiento")
     private String conceptoMovimiento;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "documentoIdentidad",nullable = false) //debe relacionarlo con un empleado
-    private Empleado empleadores;
+    @JoinColumn (name = "documentoIdentidad")
+    private Empleado empleado;
 
+    /*
+@ManyToOne(cascade = CascadeType.ALL)
+@JoinColumn (name = "documentoIdentidad",nullable = false)
+private Empleado empleado;
 
 
     /*
+
     public MovimientoDinero(double montoMovimiento, String conceptoMovimiento) {
         this.montoMovimiento = montoMovimiento;
         this.conceptoMovimiento = conceptoMovimiento;
+
+
     }
 
      */
+    public long getRegistroMoviento() {
+        return registroMoviento;
+    }
+
+    public void setRegistroMoviento(long registroMoviento) {
+        this.registroMoviento = registroMoviento;
+    }
     public MovimientoDinero(){
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Empleado getEmpleadores() {
-        return empleadores;
-    }
-
-    public void setEmpleadores(Empleado empleadores) {
-        this.empleadores = empleadores;
     }
 
     public double getMontoMovimiento() {
@@ -64,4 +61,25 @@ public class MovimientoDinero {
         this.conceptoMovimiento = conceptoMovimiento;
     }
 
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+    /*
+ public double sumarMovimientos(){
+        double cedula=this.empleado.getDocumentoIdentidad();
+        return "cedula";
+ }
+
+     */
 }
+
+
+
+
+
+
+

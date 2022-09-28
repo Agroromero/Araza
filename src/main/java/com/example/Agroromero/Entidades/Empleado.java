@@ -1,51 +1,47 @@
 package com.example.Agroromero.Entidades;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "empleado")
 public class Empleado {
-
+    /*@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;*/
     @Id
     private Long documentoIdentidad;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "correo")
     private String correo;
-    @Column(name = "rolempleado")
+    @Column(name = "empresaEmpleadoPertenece")
+    private String empresaEmpleadoPertenece;
+    @Column(name = "rolEmpleado")
     private String rolEmpleado;
 
-    @OneToMany(mappedBy = "empleadores")
-    private Set<MovimientoDinero> movimientodinero;
-
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "nit",nullable = false) //debe relacionarlo con un empleado
+/*
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "nit",nullable = false)
     private Empresa empresa;
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
+ */
+@ManyToOne(optional = false)
+@JoinColumn(name = "nit")
+private Empresa empresa;
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
-    public  Empleado(){
+    public Empleado(){
 
     }
-/*
-    public Empleado(String nombre, String correo, String empresaEmpleadoPertenece, String rolEmpleado, MovimientoDinero movimientodinero) {
+
+
+    /*public Empleado(String nombre, String correo, String empresaEmpleadoPertenece, String rolEmpleado, MovimientoDinero movimiento1) {
         this.nombre = nombre;
         this.correo = correo;
         this.empresaEmpleadoPertenece = empresaEmpleadoPertenece;
         this.rolEmpleado = rolEmpleado;
-        this.movimientodinero = movimientodinero;
+        this.movimiento1 = movimiento1;
     }
-
- */
-
+    */
 
     public Long getDocumentoIdentidad() {
         return documentoIdentidad;
@@ -71,6 +67,14 @@ public class Empleado {
         this.correo = correo;
     }
 
+    public String getEmpresaEmpleadoPertenece() {
+        return empresaEmpleadoPertenece;
+    }
+
+    public void setEmpresaEmpleadoPertenece( String empresaEmpleadoPertenece) {
+        this.empresaEmpleadoPertenece = empresaEmpleadoPertenece;
+    }
+
     public String getRolEmpleado() {
         return rolEmpleado;
     }
@@ -79,15 +83,34 @@ public class Empleado {
         this.rolEmpleado = rolEmpleado;
     }
 
-    public Set<MovimientoDinero> getMovimientodinero() {
-        return movimientodinero;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setMovimientodinero(Set<MovimientoDinero> movimientodinero) {
-        this.movimientodinero = movimientodinero;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
 
 
+    /*  public montoMovimiento getmontoMovimiento() {
+        return getmontoMovimiento();
+    }
 
+    public void montoMovimiento(montoMovimiento movimiento) {
+        this.getmontoMovimiento() = movimiento;
+    }
+/*
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", empresaEmpleadoPertenece='" + empresaEmpleadoPertenece + '\'' +
+                ", rolEmpleado='" + rolEmpleado + '\'' +
+                ", movimiento1=" + this.movimiento1 +
+                '}';
+    }
+
+ */
 }
