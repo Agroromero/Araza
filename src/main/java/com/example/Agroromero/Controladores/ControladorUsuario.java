@@ -1,6 +1,7 @@
 package com.example.Agroromero.Controladores;
 
 import com.example.Agroromero.Entidades.Empleado;
+import com.example.Agroromero.Entidades.Empresa;
 import com.example.Agroromero.Servicios.ServicioUsuario;
 import org.springframework.boot.Banner;
 import org.springframework.ui.Model;
@@ -47,16 +48,24 @@ public class ControladorUsuario {
         this.su1.crearUsuario(e);
         return new RedirectView("/user");
     }
+
+    @PostMapping("/user/{id}")
+    public RedirectView crearEmpleadoId(@PathVariable Long id, @ModelAttribute Empleado e, Model model){
+        model.addAttribute(e);
+        this.su1.crearUsuario(e);
+        return new RedirectView("/user/"+id);
+    }
     /*
         @PutMapping("/user/{id}")
         public Empleado actualizarEmpresa(@PathVariable Long id, @RequestBody Empleado e){
             return this.su1.actualizarEmpleado(id, e);
         }
  */
-    @PutMapping("/user/{id}")
+    @PutMapping("/usern/{id}")
     public RedirectView actualizarDatos(@PathVariable Long id, Empleado e){
         this.su1.actualizarEmpleado(id, e);
-        return new RedirectView("/user");
+        Long nit = this.su1.getUsuario(id).getEmpresa().getNit();
+        return new RedirectView("/user/"+nit);
     }
 /*
     @DeleteMapping("/user/{id}")
@@ -64,10 +73,12 @@ public class ControladorUsuario {
         return this.su1.eliminarEmpleado(id);
     }
 */
-    @DeleteMapping("/user/{id}")
-    public RedirectView eliminarEmpleado(@PathVariable(value = "id") Long id){
+    @DeleteMapping("/usern/{id}")
+    //public RedirectView eliminarEmpleado(@PathVariable(value = "id") Long id){
+    public RedirectView eliminarEmpleado(@PathVariable Long id){
+        Long nit = this.su1.getUsuario(id).getEmpresa().getNit();
         this.su1.eliminarEmpleado(id);
-        return new RedirectView("/user");
+        return new RedirectView("/user/"+nit);
     }
 
 }

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Nuevo empleado</title>
+    <title>Nueva empresa</title>
     <link rel="icon" type="image/x-icon" href="/img/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
@@ -21,27 +21,32 @@
     <a class="navbar-brand mx-3 btn btn-info" href="/">Quienes somos</a>
 </nav>
 <body>
-
     <div  class="px-4 py-3 ,y-2 text-center">
-        <h1 class="display-5 fw-bold mb-4">Registro nuevo empleado</h1>
+        <h1 class="display-5 fw-bold mb-4">Registro nueva empresa</h1>
         <div class="col-lg-5 mx-auto">
-            <form th:action="@{/user/{id}(id=${identificador})}" th:method="post" th:object="${nuevoempleado}" class="d-flex flex-column gap-3 aling-items-center my-2">
-                <input th:field="*{nombre}" class="form-control" type="text" placeholder="Nombre del empleado" />
-                <input th:field="*{documentoIdentidad}" class="form-control" type="number" placeholder="Documento de identidad" />
-                <input th:field="*{correo}" class="form-control" type="text" placeholder="Correo electronico" />
-                <input th:field="*{empresa.nit}" class="form-control" type="number" placeholder="Nit de la empresa" />
-                <input th:field="*{rolEmpleado}" class="form-control" type="text" placeholder="Cargo" />
+            <form th:action="@{/empresa}" th:method="post" th:object="${nEmpresa}" class="d-flex flex-column gap-3 aling-items-center">
+                <input th:field="*{nit}" class="form-control" type="number" placeholder="Nit de la empresa" />
+                <input th:field="*{nombre}" class="form-control" type="text" placeholder="Nombre de la empresa" />
+                <input th:field="*{direccion}" class="form-control" type="text" placeholder="Direccion de la empresa" />
+                <input th:field="*{telefono}" class="form-control" type="number" placeholder="Telefono" />
+
                 <div class="d-flex justify-content-center flex-column">
-                    <button class="btn btn-primary btn-lg px-4" type="submit">Crear nuevo empleado</button>
+                    <button class="btn btn-primary btn-lg px-4" type="submit">Crear nueva Empresa</button>
+                    <a href="/empresa" class="btn btn-danger my-2 btn-lg">Cancelar</a>
                 </div>
-           </form>
-            <form th:action="@{/user/{id}(id=${identificador})}" th:method="get" class="my-3 d-flex justify-content-center flex-column">
-                <button type="submit" class="btn btn-danger btn-lg">Cancelar</button>
+
             </form>
-      </div>
-  </div>
+
+
+        </div>
+
+
+    </div>
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
 </body>
 </html>

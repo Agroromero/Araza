@@ -15,11 +15,7 @@ public class Empresa {
     private String direccion;
     @Column(name = "telefono")
     private int telefono;
-/*
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "documentoIdentidad")
-    private  Empleado empleado;
-*/
+
     @OneToMany(mappedBy = "empresa")
     private Set<Empleado> empleados;
 
@@ -42,7 +38,8 @@ public class Empresa {
 
  */
 
-    public Empresa(){
+
+    public Empresa() {
 
     }
 
@@ -85,6 +82,6 @@ public class Empresa {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
-*/
 
+ */
 }

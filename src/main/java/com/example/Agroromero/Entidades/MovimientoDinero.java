@@ -9,7 +9,7 @@ import java.util.List;
 public class MovimientoDinero {
 
     @Id
-    private Long id;
+    private Long registroMovimiento;
     @Column(name = "montomovimiento")
     private double montoMovimiento;
     @Column(name = "conceptomovimiento")
@@ -32,12 +32,12 @@ public class MovimientoDinero {
 
     }
 
-    public Long getId() {
-        return id;
+    public Long getRegistroMovimiento() {
+        return registroMovimiento;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setRegistroMovimiento(Long registroMovimiento) {
+        this.registroMovimiento = registroMovimiento;
     }
 
     public Empleado getEmpleadores() {
@@ -63,5 +63,12 @@ public class MovimientoDinero {
     public void setConceptoMovimiento(String conceptoMovimiento) {
         this.conceptoMovimiento = conceptoMovimiento;
     }
+/*
+    public void getBalance(List<MovimientoDinero> movi, Long id){
+        for(int i = 0; i < movi.size(); i++){
+            System.out.println(movi.size());
+        }
+    }
 
+ */
 }

@@ -19,7 +19,6 @@ public class Empleado {
     @OneToMany(mappedBy = "empleadores")
     private Set<MovimientoDinero> movimientodinero;
 
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "nit",nullable = false) //debe relacionarlo con un empleado
     private Empresa empresa;
@@ -86,8 +85,6 @@ public class Empleado {
     public void setMovimientodinero(Set<MovimientoDinero> movimientodinero) {
         this.movimientodinero = movimientodinero;
     }
-
-
 
 
 }

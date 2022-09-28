@@ -1,5 +1,6 @@
 package com.example.Agroromero.Servicios;
 
+import com.example.Agroromero.Entidades.Empleado;
 import com.example.Agroromero.Entidades.Empresa;
 import com.example.Agroromero.Repositorios.RepositorioEmpresa;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,14 @@ public class ServicioEmpresa {
         this.repositorioE = repositorioE;
     }
 
-
+    public Empresa getEmpresa(Long id){
+        return this.repositorioE.findById(id).orElseThrow();
+    }
+/*
+    public Empresa getUsuario(Long id){
+        return this.repositorioE.findById(id).orElseThrow();
+    }
+*/
     public List<Empresa> getInformacion(){
         return this.repositorioE.findAll();
     }

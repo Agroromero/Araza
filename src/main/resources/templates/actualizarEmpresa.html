@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Actualizar empleado</title>
+    <link rel="icon" type="image/x-icon" href="/img/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+</head>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        <img src="/img/logo.png" width="35" height="35" class="d-inline-block align-top mx-3" alt="">
+        Agroromero
+    </a>
+
+    <a class="navbar-brand mx-3 btn btn-info" href="/">Quienes somos</a>
+</nav>
+<body>
+
+<div  class="px-4 py-3 ,y-2 text-center">
+    <h1 class="display-5 fw-bold mb-4">Actualizar Empresa</h1>
+    <div th:each="actualizarEmpresa : ${actualizarEmpresa}" class="col-lg-5 mx-auto">
+        <form th:action="@{/empresa/{id}(id=${actualizarEmpresa.nit})}" th:method="put" class="d-flex flex-column gap-3 aling-items-center my-2">
+
+            <input th:field="*{actualizarEmpresa.nit}" class="form-control" type="number" disabled="true"/>
+            <input th:field="*{actualizarEmpresa.nombre}" class="form-control" type="text" />
+            <input th:field="*{actualizarEmpresa.direccion}" class="form-control" type="text" />
+            <input th:field="*{actualizarEmpresa.telefono}" class="form-control" type="number" />
+            <button class="btn btn-primary btn-lg px-4" type="submit">Actualizar empleado</button>
+            <a href="/empresa" class="btn btn-danger btn-lg px-4">Cancelar</a>
+        </form>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+</body>
+</html>

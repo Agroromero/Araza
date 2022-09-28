@@ -29,21 +29,25 @@ public class ControladorMovimientoDinero {
         return this.smd1.crearMovimientoDinero(md);
     }
 */
-    @PostMapping("/movements")
-    public RedirectView crearEmpleado(@ModelAttribute MovimientoDinero md, Model model){
+    @PostMapping("/movimiento/{id}")
+    public RedirectView crearMovimiento(@PathVariable Long id, @ModelAttribute MovimientoDinero md, Model model){
         model.addAttribute(md);
         this.smd1.crearMovimientoDinero(md);
-        return new RedirectView("/user");
+        return new RedirectView("/movimiento/"+id);
     }
 
-    @PutMapping("/movements/{id}")
-    public MovimientoDinero actualizarEmpresa(@PathVariable Long id, @RequestBody MovimientoDinero md){
-        return this.smd1.actualizarMovimientoDinero(id, md);
+    @PutMapping("/movimienton/{id}")
+    public RedirectView actualizarMovimiento(@PathVariable Long id, MovimientoDinero md){
+        this.smd1.actualizarMovimientoDinero(id, md);
+        Long cedula = this.smd1.getMovimiento(id).getEmpleadores().getDocumentoIdentidad();
+        return new RedirectView("/movimiento/"+cedula);
     }
 
-    @DeleteMapping("/movements/{id}")
-    public MovimientoDinero eliminarEmpresa(@PathVariable(value = "id") Long id){
-        return this.smd1.eliminarMovimientoDinero(id);
+    @DeleteMapping("/movimiento/{id}")
+    public RedirectView eliminarMovimiento(@PathVariable(value = "id") Long id){
+        Long cedula = this.smd1.getMovimiento(id).getEmpleadores().getDocumentoIdentidad();
+        this.smd1.eliminarMovimientoDinero(id);
+        return new RedirectView("/movimiento/"+cedula);
     }
 
 

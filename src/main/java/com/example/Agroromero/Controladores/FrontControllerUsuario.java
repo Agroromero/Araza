@@ -40,30 +40,69 @@ public class FrontControllerUsuario {
         return "index";
     }
 
+    @GetMapping("/user/{id}")
+    public String actualizarEmpleado(@PathVariable Long id, Model model,
+                                     @AuthenticationPrincipal OidcUser principal){
+        if(principal != null){
+            Autenticacion usuario = this.sauth.getOrCreateAuth(principal.getClaims());
+            model.addAttribute("auth", usuario);
+        }
+        List<Empleado> listaEmpleados = this.su1.getInformacion();
+        List<MovimientoDinero> lsitamovimientos = this.smd1.getInformacion();
+        model.addAttribute("listaDeEmpleados", listaEmpleados);
+        model.addAttribute("listaDeMovimientos", lsitamovimientos);
+        model.addAttribute( "identificador", id);
+        return "usuarios";
+    }
+
     @GetMapping("/user")
-    public String informacion(Model model){
+    public String informacion(Model model, @AuthenticationPrincipal OidcUser principal){
+        if(principal != null){
+            Autenticacion usuario = this.sauth.getOrCreateAuth(principal.getClaims());
+            model.addAttribute("auth", usuario);
+        }
         List<Empleado> listaEmpleados = this.su1.getInformacion();
         List<MovimientoDinero> lsitamovimientos = this.smd1.getInformacion();
         model.addAttribute("listaDeEmpleados", listaEmpleados);
         model.addAttribute("listaDeMovimientos", lsitamovimientos);
         return "usuarios";
     }
-
-    @GetMapping("/user/nuevo")
-    public String nuevoEmpleado(Model model){
-        model.addAttribute("nuevoempleado", new Empleado());
-        return "nuevoUsuario";
-    }
-
+/*
     @GetMapping("/user/{id}")
     public String actualizarEmpleado(@PathVariable Long id, Model model){
         Empleado actualizar = this.su1.getUsuario(id);
         model.addAttribute( "actualizarE", actualizar);
         return "actualizarUsuario";
     }
+*/
+    @GetMapping("/usern/{id}")
+    public String actualizarEmpleado(@PathVariable Long id, Model model){
+        Empleado actualizar = this.su1.getUsuario(id);
+        model.addAttribute( "actualizarE", actualizar);
+        return "actualizarUsuario";
+    }
+
+
+    @GetMapping("/user/nuevo/{id}")
+    public String nuevoEmpleado(@PathVariable Long id,Model model,
+                                @AuthenticationPrincipal OidcUser principal){
+        if(principal != null){
+            Autenticacion usuario = this.sauth.getOrCreateAuth(principal.getClaims());
+            model.addAttribute("auth", usuario);
+        }
+        model.addAttribute("nuevoempleado", new Empleado());
+        model.addAttribute( "identificador", id);
+        return "nuevoUsuario";
+    }
+
+
 
     @GetMapping("/user/nuevo-movimiento")
-    public String nuevoMovimiento(Model model){
+    public String nuevoMovimiento(Model model, @AuthenticationPrincipal OidcUser principal){
+        if(principal != null){
+            Autenticacion usuario = this.sauth.getOrCreateAuth(principal.getClaims());
+            model.addAttribute("auth", usuario);
+        }
         model.addAttribute("nuevomovimiento", new MovimientoDinero());
         return "nuevoMovimiento";
     }
